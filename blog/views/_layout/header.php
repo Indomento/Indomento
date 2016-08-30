@@ -3,7 +3,6 @@
 
 <head>
     <link rel="stylesheet" href="<?=APP_ROOT?>/content/styles.css" />
-    <link rel="icon" href="<?=APP_ROOT?>/content/images/favicon.ico" />
     <script src="<?=APP_ROOT?>/content/scripts/jquery-3.0.0.min.js"></script>
     <script src="<?=APP_ROOT?>/content/scripts/blog-scripts.js"></script>
     <title><?php if (isset($this->title)) echo htmlspecialchars($this->title) ?></title>
@@ -11,24 +10,40 @@
 
 <body>
 <header>
-    <a href="<?=APP_ROOT?>"><img src="<?=APP_ROOT?>/content/images/site-logo.png"></a>
-    <a href="<?=APP_ROOT?>/">Home</a>
+	<a href="<?=APP_ROOT?>"><img src="<?=APP_ROOT?>/content/images/site-logo.png"></a> 
+    <h2>Indomento</h2>
+    <h3>Welcome, <?php
+        if(isset($_SESSION['username'])){
+            echo htmlspecialchars($_SESSION['username']);
+        } else{
+            echo 'Guest';
+        }
+        ?>
+    </h3>
+    <ul>
+        <li><a href="<?=APP_ROOT?>/">Home</a></li>
     <?php if ($this->isLoggedIn) : ?>
-        <a href="<?=APP_ROOT?>/posts">Posts</a>
-        <a href="<?=APP_ROOT?>/posts/create">Create Post</a>
-        <a href="<?=APP_ROOT?>/users">Users</a>
+        <li><a href="<?=APP_ROOT?>/posts">Posts</a></li>
+        <li><a href="<?=APP_ROOT?>/posts/create">Create Post</a></li>
+        <li><a href="<?=APP_ROOT?>/users">Users</a></li>        
     <?php else: ?>
-        <a href="<?=APP_ROOT?>/users/login">Login</a>
-        <a href="<?=APP_ROOT?>/users/register">Register</a>
+        <li><a href="<?=APP_ROOT?>/users/login">Login</a></li>
+        <li><a href="<?=APP_ROOT?>/users/register">Register</a></li>
     <?php endif; ?>
     <?php if ($this->isLoggedIn) : ?>
-        <div id="logged-in-info">
-            <span>Hello, <b><?=htmlspecialchars($_SESSION['username'])?></b></span>
-            <form method="post" action="<?=APP_ROOT?>/users/logout">
-                <input type="submit" value="Logout"/>
-            </form>
-        </div>
+        <li>
+            <a href="<?=APP_ROOT?>/users/logout">Logout</a>    
+        </li>
     <?php endif; ?>
+    </ul>
+    <hr />
+    <ul>
+    <?php foreach ($this->postsSidebar as $post) : ?>
+        <li>
+            <a href="<?=APP_ROOT?>/home/view/<?=$post['id']?>"><?=htmlentities($post['title']) ?></a>
+        </li>
+    <?php endforeach ?>
+    </ul>
 </header>
 
 <?php require_once('show-notify-messages.php'); ?>
