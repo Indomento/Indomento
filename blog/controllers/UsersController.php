@@ -2,33 +2,31 @@
 
 class UsersController extends BaseController
 {
-
     public function register()
     {
-		if($this->isPost) {
+        if ($this->isPost) {
             $username = $_POST['username'];
             $password = $_POST['password'];
             $password_confirm = $_POST['password_confirm'];
             $full_name = $_POST['full_name'];
-            if(strlen($username) <= 1){
-                $this->setValidationError("username", "Username invalid");
+            if (strlen($username) <= 1) {
+                $this->setValidationError("username", "Невалидно потребителско име!");
             }
-            
-            if(strlen($password) <= 1){
-                $this->setValidationError("password", "Password invalid");
+            if (strlen($password) <= 1) {
+                $this->setValidationError("password", "Невалидна парола!");
             }
-            if($password != $password_confirm){
-                $this->setValidationError("password_confirm", "Passwords do not match");
+            if ($password != $password_confirm) {
+                $this->setValidationError("password_confirm", "Паролата не съвпада!");
             }
             if ($this->formValid()) {
                 $userId = $this->model->register($username, $password, $full_name);
                 if ($userId !== false) {
                     $_SESSION['username'] = $username;
                     $_SESSION['user_id'] = $userId;
-                    $this->addInfoMessage("Registration successful.");
+                    $this->addInfoMessage("Успешна регистрация!");
                     $this->redirect("");
                 } else {
-                    $this->addErrorMessage("Error: Registration failed.");
+                    $this->addErrorMessage("Грешка по време на регистрацията!");
                 }
             }
         }
@@ -36,25 +34,24 @@ class UsersController extends BaseController
 
     public function login()
     {
-        if($this->isPost) {
+        if ($this->isPost) {
             $username = $_POST['username'];
             $password = $_POST['password'];
-            $userId=$this->model->login($username, $password);
-            if($userId !== false) {
+            $userId = $this->model->login($username, $password);
+            if ($userId !== false) {
                 $_SESSION['username'] = $username;
                 $_SESSION['user_id'] = $userId;
-                $this->addInfoMessage("Login successful.");
+                $this->addInfoMessage("Успешно влязохте!");
                 $this->redirect("");
             } else {
-                $this->addErrorMessage("Error: Login failed.");
+                $this->addErrorMessage("Неуспешно влизане!");
             }
         }
     }
 
-
     public function logout()
     {
-		session_destroy();
+        session_destroy();
         $this->redirect("");
     }
 
