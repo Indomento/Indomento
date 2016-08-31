@@ -52,17 +52,26 @@ abstract class BaseController
             include($viewFileName);
             $htmlFromView = ob_get_contents();
             ob_end_clean();
+            
+            //Loading the five latest posts for the sidebar
+            $posts = $this->model->getLatestPosts(3);
+            $this->posts = array_slice($posts, 0, 3);
+            $this->postsSidebar = $posts;
+
             if ($includeLayout) {
                 include('views/_layout/header.php');
             }
+            echo "<div class='content-wrap'>";
             echo $htmlFromView;
             if ($includeLayout) {
                 include('views/_layout/footer.php');
             }
+            echo "</div>";
+
             $this->isViewRendered = true;
         }
     }
-
+    
     public function redirectToUrl(string $url)
     {
         header("Location: " . $url);
@@ -85,7 +94,7 @@ abstract class BaseController
 
     public function authorize() {
         if (! $this->isLoggedIn) {
-            $this->addErrorMessage("Please login first.");
+            $this->addErrorMessage("Моля влезте в системата първо.");
             $this->redirect("users", "login");
         }
     }
