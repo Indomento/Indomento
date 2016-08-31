@@ -1,20 +1,14 @@
-/*Colors
-#252520: background;
-
-*/
 
 body{
-    background: #252520;
+    background: #eeeeee;
 }
 
 h1,h2,h3,h4,h5,h6{
-    color: #fff;
+    color: #000000;
     font-family:"Gill Sans",georgia,serif;
     font-style: italic;
     font-weight: bold;
 }
-
-
 
 a{
     font-family:"Garamond",georgia,serif;
@@ -50,7 +44,7 @@ body>header {
     float: left;
     height:100%;
     width: 15%;
-    background: #000;
+    background: #1b2f48;
     top:0;
     left:0;
     padding: 0px 15px 0px 15px;
@@ -65,29 +59,32 @@ form>div{
     margin-bottom: 20px;
     font-family:"Gill Sans",georgia,serif;
     font-size:24px;
-    color: #b7b7ae;
+    color: #000000;
 
 }
 
 form>div>label{
     font-family:"Gill Sans",georgia,serif;
     font-size:24px;
-    color: #b7b7ae;
+    color: #000000;
 }
 
 form input[type=text],input[type=password]{
-    border:1px solid #737365;
+    border:1px solid #CCCCCC;
     border-radius: 10px;
-    background: #252520;
+    background: #ffffff;
     padding:3px 5px 3px 5px;
     color: #737365;
 }
 form textarea{
-     border:1px solid #737365;
+    border:1px solid #CCCCCC;
     border-radius: 10px;
-    background: #252520;
+    background: #ffffff;
     padding:3px 5px 3px 5px;
     color: #737365;
+    width:355px;
+    height: 220px;
+   
 }
 
 body>header>ul{
@@ -95,7 +92,7 @@ body>header>ul{
 }
 
 hr{
-    color: color: #504D46;
+    color: #504D46;
 }
 
 body>header>ul>li{
@@ -114,22 +111,21 @@ body>header>ul>li>a{
 }
 
 body>header>ul>li>a:visited{
-    color: #504D46;
+    color: lightyellow;
 }
 
 body>header>ul>li>a:hover{
     list-style-type: none;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid cornsilk;
     cursor: pointer;
-    color: #fff;
+    color: white;
 }
 
 footer{
-    color:gold;
+    background: #eee;
+    padding: 5px;
+    margin: 10px;
     text-align: center;
-    bottom: 0;
-    position: float;
-    width:500px;   
 }
 
 .content-wrap{
@@ -148,11 +144,11 @@ article{
 }
 
 button, input[type=submit]{
-    border:1px solid #737365;
+    border:1px solid lavender;
     border-radius: 10px;
     font-size:18px;
-    color:#737365;
-    background: #252520;
+    color: #252520;
+    background: #DDDDDD;
     transition: color 0.3s;
     transition: border 0.3s;
     cursor: pointer;
@@ -254,3 +250,4 @@ body>main:after {
 .table td,table th {
     background: #CCC;
 }
+
