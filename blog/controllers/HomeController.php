@@ -3,10 +3,17 @@
 class HomeController extends BaseController
 {
     function index() {
-        // TODO: Load posts to be displayed here ...
+        $posts = $this->model->getLatestPosts(5);
+        $this->posts = array_slice($posts, 0, 3);
+        $this->postsSidebar = $posts ;
     }
 	
-	function view($id) {
-        // TODO: Load a post to be displayed here ...
+	function view(int $id) {
+        $post = $this->model->getPostById($id);
+        if(!$post) {
+            $this->addErrorMessage("Error: invalid post id.");
+            $this->redirect("");
+        }
+        $this->post = $post;
     }
 }
