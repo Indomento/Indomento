@@ -16,12 +16,12 @@ class PostsController extends BaseController
         if ($this->isPost) {
             $title = $_POST['post_title'];
             if (strlen($title) < 1) {
-                $this->setValidationError("post_title", "Title cannot be empty!");
+                $this->setValidationError("post_title", "Заглавието не може да бъде празно!");
             }
 
             $content = $_POST['post_content'];
             if (strlen($content) < 1) {
-                $this->setValidationError("post_content", "Content cannot be empty!");
+                $this->setValidationError("post_content", "Съдържанието не може да е празно!");
             }
             if ($this->formValid()) {
                 $userId = $_SESSION['user_id'];
@@ -29,24 +29,24 @@ class PostsController extends BaseController
                     $this->addInfoMessage("Post created.");
                     $this->redirect("posts");
                 } else {
-                    $this->addErrorMessage("Error: cannot create post.");
+                    $this->addErrorMessage("Възникна грешка- не може да се създаде новата публикация!");
                 }
             }
 
         }
 
     }
-
+    
     function delete(int $id)
     {
 
        if ($this->isPost) {
            if ($this->model->delete($id)) {
-               $this->addInfoMessage("Post deleted!");
+               $this->addInfoMessage("Успешно изтрихте публикацията!");
            }
            else
            {
-               $this->addErrorMessage("Error: cannot delete post!");
+               $this->addErrorMessage("Възникна грешка- публикацията не може да бъде изтрита!");
            }
            $this->redirect('posts');
        }
@@ -54,7 +54,7 @@ class PostsController extends BaseController
         {
             $post = $this->model->getPostById($id);
             if (! $post) {
-                $this->addErrorMessage("Error: post does not exist!");
+                $this->addErrorMessage("Възникна грешка- публикацията не съшествува!");
                 $this->redirect('posts');
             }
             $this->post = $post;
@@ -62,26 +62,19 @@ class PostsController extends BaseController
     }
 
     function edit(int $id) {
-        $post = $this->model->getPostById($id);
-        if (! $post) {
-            $this->addErrorMessage("Error: post does not exist!");
-            $this->redirect('posts');
-        }
-        $this->post = $post;
+
         if ($this->isPost)
         {
-            if ($this->formValid()) {
-                $postId = $id;
-                $title = $_POST['post_title'];
-                $content = $_POST['post_content'];
-                if($this->model->edit($title, $content, $postId)){
-                    $this->addInfoMessage("Post edited.");
-                    $this->redirect("posts");
-                } else {
-                    $this->addErrorMessage("Error: cannot edit post.");
-                }
-            }
+            if($this->model->edit());
         }
-       
+        else
+        {
+            $post = $this->model->getPostById($id);
+            if (! $post) {
+                $this->addErrorMessage("Възникна грешка- публикацията не съшествува!");
+                $this->redirect('posts');
+            }
+            $this->post = $post;
+        }
     }
 }
