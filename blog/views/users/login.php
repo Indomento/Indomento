@@ -15,5 +15,5 @@
 	<div>
 		<input type="password" name="password" required />
 	</div>
-	<div><input type="submit" value="Влез"/></div>
+	<div><input type="submit" value="Вход"/></div>
 </form>
