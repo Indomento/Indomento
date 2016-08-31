@@ -7,13 +7,14 @@ class HomeController extends BaseController
         $this->posts = array_slice($posts, 0, 3);
         $this->postsSidebar = $posts ;
     }
-	
-	function view(int $id) {
+
+    function view(int $id) {
         $post = $this->model->getPostById($id);
         if(!$post) {
-            $this->addErrorMessage("Error: invalid post id.");
+            $this->addErrorMessage("Публикацията не съществува!");
             $this->redirect("");
         }
         $this->post = $post;
     }
 }
+
