@@ -4,16 +4,16 @@
 
 <form method="post">
 	<div>
-		<label for="username">Username</label>
+		<label for="username">Потребителско име</label>
 	</div>
 	<div>
 		<input type="text" name="username" required />
 	</div>
 	<div>
-		<label for="password">Password</label>
+		<label for="password">Парола</label>
 	</div>
 	<div>
 		<input type="password" name="password" required />
 	</div>
-	<div><input type="submit" value="Login"/></div>
+	<div><input type="submit" value="Влез"/></div>
 </form>
