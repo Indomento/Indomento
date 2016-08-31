@@ -3,9 +3,9 @@ body{
     background: #eeeeee;
 }
 
-h1,h2,h3,h4,h5,h6{
+h1,h2,h3,h4,h5,h6 {
     color: #000000;
-    font-family:"Gill Sans",georgia,serif;
+    font-family: "Gill Sans", georgia, serif;
     font-style: italic;
     font-weight: bold;
 }
@@ -21,10 +21,17 @@ ul li a {
 
 h1{
     font-size: 30px;
+    color:#daa520;
 }
 
 h2{
     font-size: 28px;
+    color: #DAA520;
+}
+
+h3{
+    font-size: 18px ;
+    color: #dd0000;
 }
 
 p{
@@ -105,8 +112,8 @@ body>header>ul>li{
 
 body>header>ul>li>a{
     font-size: 24px;
-    color: #504D46;
-    border-bottom: 1px solid #000;
+    color: white;
+    /*border-bottom: 1px solid;*/
     transition: color 0.3s;
 }
 
@@ -122,7 +129,7 @@ body>header>ul>li>a:hover{
 }
 
 footer{
-    background: #eee;
+    background: #1b2f48;
     padding: 5px;
     margin: 10px;
     text-align: center;
@@ -158,8 +165,13 @@ button:hover, input[type=submit]:hover{
     color: #fff;
     border:1px solid #fff;
 }
-body>header a{
+
+body>header a:hover{
     text-align: center;
+}
+
+.cancel-button{
+
 }
 
 body>header>a>img, body>header a  {
@@ -167,10 +179,15 @@ body>header>a>img, body>header a  {
     vertical-align: middle;
     padding: 0px 5px;
     font-size: 1.2em;
+
+}
+body>header>a>img{
+    width:100%;
 }
 
 .content-wrap>footer {
-    background: black;
+    background: #1b2f48;
+    color: white;
     padding: 5px;
     margin: 10px 0;
     text-align: center;
