@@ -26,11 +26,10 @@ class UsersModel extends BaseModel
             return $result['id'];
         return false;
     }
-
     public function getAll() : array
     {
         $statement = self::$db->query(
-            "SELECT * FROM users ORDER BY username");
+            "SELECT * FROM users ORDER BY id");
         return $statement->fetch_all(MYSQLI_ASSOC);
     }
 }
