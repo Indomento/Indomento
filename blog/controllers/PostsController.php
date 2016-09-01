@@ -60,21 +60,29 @@ class PostsController extends BaseController
             $this->post = $post;
         }
     }
-
+    
     function edit(int $id) {
-
+        $post = $this->model->getPostById($id);
+        if (! $post) {
+            $this->addErrorMessage("Грешка: Публикацията не съществува!");
+            $this->redirect('posts');
+        }
+        $this->post = $post;
         if ($this->isPost)
         {
-            if($this->model->edit());
-        }
-        else
-        {
-            $post = $this->model->getPostById($id);
-            if (! $post) {
-                $this->addErrorMessage("Възникна грешка- публикацията не съшествува!");
-                $this->redirect('posts');
+            if ($this->formValid()) {
+                $postId = $id;
+                $title = $_POST['post_title'];
+                $content = $_POST['post_content'];
+                if($this->model->edit($title, $content, $postId)){
+                    $this->addInfoMessage("Публикацията е променена.");
+                    $this->redirect("posts");
+                } else {
+                    $this->addErrorMessage("Грешка: Публикацията не може да бъде променена!");
+                }
             }
-            $this->post = $post;
         }
+       
     }
+    
 }
