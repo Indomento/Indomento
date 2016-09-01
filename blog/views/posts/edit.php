@@ -12,5 +12,7 @@
     <div>Author ID:</div>
     <input type="text" name="user_id" value="<?=htmlspecialchars($this->post['user_id'])?>"/>
     <div><input type="submit" value="Редактирай">
-    <a href="<?=APP_ROOT?>/posts">Cancel</a></div>
+        <a class="btn btn-danger" href="<?= APP_ROOT ?></posts">Отказ</a>
 </form>
+
+
