@@ -27,14 +27,11 @@ class PostsModel extends HomeModel
         return $statement->affected_rows == 1;
     }
 
-    public function edit(int $id, string $title, string $content) 
+    public function edit(string $title, string $content, int $id) 
     {
-        $statement = self::$db->prepare("UPDATE posts SET title=:title, content=:content WHERE id=:id");
-        $statement->bindParam(':title', $title);
-        $statement->bindParam(':content', $content);
-        $statement->bindParam(':id', $id);
+        $statement = self::$db->prepare("UPDATE posts SET title=?, content=? WHERE id=?");
+        $statement->bind_param("ssi", $title, $content, $id);
         $statement->execute();
         return $statement->affected_rows == 1;
     }
-
 }
